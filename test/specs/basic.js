@@ -4,21 +4,93 @@ const apiPage = require('../page/api.page');
 const helpPage = require('../page/help.page');
 const versionsPage = require('../page/versions.page');
 const signUpPage = require('../page/signUp.page');
+const emailRandom = require('../page/email.page');
+const passwordRandom = require('../page/password.page');
+const usernameRandom = require('../page/username.page');
+const informingPage = require('../page/informing.page ');
+const singInPage = require('../signin/signin.button');
+const addEmail = require('../signin/login.signin');
+const addPassword = require('../signin/password.sigin');
+const singInForm = require('../signin/signin.form');
+const forgotButton = require('../signin/forgot.button');
+const forgotEmail = require('../signin/forgot.login');
+const featuresHover = require('../hover/features.hover');
+const exploreHover = require('../hover/explore.hover');
+const createUser = require('../signin/signin.create');
 
 
 
 
-describe('FINAL HOME PROJECT', () => {
+describe('FINAL HOME PROJECT, Create your account ', () => {
 
-  xit('New User Registration', async () => {
+  xit('Create your account', async () => {
     browser.url('https://github.com/');
-    await signUpPage.clickButton();
-    await browser.pause(5000);
-    let randomEmail = await faker.internet.email();
-    console.log('Random email: ' + randomEmail)
-
+    await browser.pause(3000);
+    await createUser.functionHoverPricing();
+    await browser.pause(2000);
+    await createUser.clickPlansLink();
+    await browser.pause(2000);
+    await createUser.clickJoinFoFreeLink();
+    await createUser.addUserName();
+    await createUser.addEmail();
+    await createUser.addPassword();
+    await createUser.clickCheckboxEmail();
+    await browser.pause(3000);
+    
   })
 
+  xit('explore 6.03', async () => {
+    browser.url('https://github.com/');
+    await browser.pause(3000);
+    await createUser.functionHoverExplore();
+    await browser.pause(2000);
+    await createUser.clickExploreGitLink();
+    await browser.pause(2000);
+    await createUser.clickTopicsLink();
+    await browser.pause(2000);
+    await createUser.topicsIsDisplayed();
+    await browser.pause(2000);
+  })
+
+  xit('webdriverio', async () => {
+    browser.url('https://github.com/');
+    await browser.pause(3000);
+    await createUser.addValueInput();
+    await browser.pause(2000);
+    await createUser.clickAllGitHub();
+    await browser.pause(2000);
+    await createUser.clickTypeScript();
+    await browser.pause(2000);
+    await createUser.clickLinkWebdriver();
+    await browser.pause(2000);
+    console.log("Should demonstrate url: " + await browser.getUrl());
+  })
+
+  xit('final task, all title', async () => {
+    browser.url('https://github.com/');
+    await browser.pause(3000);
+    await createUser.clickLinkCareers();
+    await browser.pause(2000);
+    await createUser.clickLinkOpenPosition();
+    await browser.pause(2000);
+    const versionButton = await $('[class="pb-md-6"]');
+    console.log("Text for element: " + await versionButton.getText());
+  })
+
+  it('final task, all title', async () => {
+    browser.url('https://github.com/');
+    await browser.pause(3000);
+    await createUser.clickLinkCareers();
+    await browser.pause(2000);
+    await createUser.clickLinkOpenPosition();
+    await browser.pause(2000);
+    const getBusinessSystems = await $('//*[contains(text(),"Business Systems")]');
+    console.log("Text for Business Systems: " + await getBusinessSystems.getText());
+    const getCustomerSuccess = await $('//h3[contains(text(),"Customer Success")]');
+    console.log("Text for Customer Success: " + await getCustomerSuccess.getText());
+    const getDesign = await $('//h3[contains(text(),"Design")]');
+    console.log("Text for Design: " + await getDesign.getText());
+  })
 
 })
 
@@ -27,8 +99,102 @@ describe('FINAL HOME PROJECT', () => {
 
 
 
+describe('FINAL HOME PROJECT, sign in page ', () => {
+
+  xit('sign in page', async () => {
+    browser.url('https://github.com/');
+    await singInPage.clickButtonSignIn();
+    await browser.pause(2000);
+    await addEmail.addLoginEmail();
+    await browser.pause(2000);
+    await addPassword.addPasswordInput();
+    await browser.pause(2000);
+    await singInForm.clickSignInForm();
+    await browser.pause(4000);
+    let menuButton = await $('[class="Header-item position-relative mr-0 d-none d-md-flex"]');
+    menuButton.click();
+    await browser.pause(2000);
+    let elem = await $('//*[contains(text(),"alexsalll") and @class="css-truncate-target"]');
+    let isDisplayed = await elem.isDisplayed();
+    console.log("should isDisplayed: " + isDisplayed);
+  })
+
+  xit('sign in page, forgot password positiv', async () => {
+    browser.url('https://github.com/');
+    await singInPage.clickButtonSignIn();
+    await browser.pause(2000);
+    await forgotButton.clickForgotPass();
+    await browser.pause(2000);
+    await forgotEmail.ForgotAddEmail();
+    await browser.pause(2000);
+    let elemText = await $('//*[contains(text(),"Verify your account")]');
+    let isDisplayedText = await elemText.isDisplayed();
+    console.log("should isDisplayedText: " + isDisplayedText);
+  })
+
+  xit('hover button Why GitHub', async () => {
+    browser.url('https://github.com/');
+    await featuresHover.hoverFeatures();
+    await browser.pause(1000);
+    let elemFeatures = await $('//*[contains(text(),"Features")]');
+    let isDisplayedFeatures = await elemFeatures.isDisplayed();
+    console.log("should isDisplayedFeatures: " + isDisplayedFeatures);
+    await browser.pause(3000);
+  })
+
+  xit('hover button Explore', async () => {
+    browser.url('https://github.com/');
+    await exploreHover.hoverExplore();
+    await browser.pause(3000);
+    let elemExplore = await $('//*[contains(text(),"Explore GitHub")]');
+    let isDisplayedExplore = await elemExplore.isDisplayed();
+    console.log("should isDisplayedExplore: " + isDisplayedExplore);
+  })
+  
+})
 
 
+
+describe('FINAL HOME PROJECT, New User Registration 1', () => {
+
+  xit('Random email', async () => {
+    browser.url('https://github.com/');
+    await signUpPage.clickButtonSign();
+    await browser.pause(5000);
+    await emailRandom.addEmailRandom();
+    await browser.pause(3000);
+    let continueEmail = await $('[data-optimizely-event="click.signup_continue.email"]');
+    await continueEmail.click();
+    await browser.pause(3000);
+  })
+
+  xit('Random password', async () => {
+    await passwordRandom.addPasswordRandom();
+    await browser.pause(3000);
+    let continuePassword = await $('[data-optimizely-event="click.signup_continue.password"]');
+    await continuePassword.click();
+    await browser.pause(3000);
+  })
+
+  xit('Random username', async () => {
+    await usernameRandom.addNameRandom();
+    await browser.pause(3000);
+    let continueUsername = await $('[data-optimizely-event="click.signup_continue.username"]');
+    await continueUsername.click();
+    await browser.pause(3000);
+  })
+
+  xit('informing email', async () => {
+    await informingPage.addSolution();
+    await browser.pause(3000);
+    let continueInforming = await $('[data-optimizely-event="click.signup_continue.opt-in"]');
+    await continueInforming.click();
+    await browser.pause(3000);
+    let elem = await $('//*[contains(text(),"Verify your account")]');
+    let isDisplayed = await elem.isDisplayed();
+    console.log("should isDisplayed: " + isDisplayed);
+  })
+})
 
 
 
